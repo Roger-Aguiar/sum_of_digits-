@@ -1,14 +1,19 @@
-export const digitalRoot = (n:number):number => 
+export class SumOfDigits
 {
-    let digitalRootSum = String(n).split('');
-    let sum = 0;
+    n = 0;
 
-    for(let index = 0; index < digitalRootSum.length; index++)
+    constructor(n)
     {
-        sum = sum + (Number(digitalRootSum[index]));
+        this.n = n;        
     }
 
-    return sum.toString().split('').length == 1 ? sum : digitalRoot(sum);
-};
+    digitalRoot() 
+    {    
+        let sum = 0;
 
-let digitalRootSum = digitalRoot(456);
+        for(let index = 0; index < String(this.n).split('').length; index++)       
+            sum = sum + Number((String(this.n).split('')[index]));    
+
+        return sum.toString().split('').length == 1 ? sum : new SumOfDigits(sum).digitalRoot();
+    };
+}
